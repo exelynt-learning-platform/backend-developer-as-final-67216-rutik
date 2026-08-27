@@ -1,0 +1,17 @@
+$kind: http-request
+url: "{{baseUrl}}/api/resources/{{createdResourceId}}"
+method: PUT
+headers:
+  Authorization: Bearer {{adminToken}}
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "name": "Conference Room C (Renovated)",
+      "description": "Small huddle room, now with a TV",
+      "type": "ROOM",
+      "location": "Building 2, Floor 1",
+      "available": true
+    }
+order: 4000

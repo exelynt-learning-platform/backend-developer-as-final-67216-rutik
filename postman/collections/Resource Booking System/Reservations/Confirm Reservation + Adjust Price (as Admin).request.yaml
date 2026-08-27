@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{baseUrl}}/api/reservations/{{createdReservationId}}"
+method: PUT
+headers:
+  Authorization: Bearer {{adminToken}}
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "status": "CONFIRMED",
+      "price": 50.00,
+      "notes": "Approved by admin"
+    }
+order: 7000

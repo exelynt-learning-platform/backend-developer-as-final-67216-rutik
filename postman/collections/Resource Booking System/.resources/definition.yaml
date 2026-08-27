@@ -1,0 +1,9 @@
+$kind: collection
+name: Resource Booking System
+description: RESTful Resource Booking System API - JWT auth, RBAC, resources, reservations. Import this alongside the accompanying environment file.
+variables:
+  baseUrl: http://localhost:8080
+  adminToken: ""
+  userToken: ""
+  createdResourceId: ""
+  createdReservationId: ""

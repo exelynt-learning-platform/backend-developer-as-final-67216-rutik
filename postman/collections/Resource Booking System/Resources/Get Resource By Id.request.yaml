@@ -1,0 +1,6 @@
+$kind: http-request
+url: "{{baseUrl}}/api/resources/1"
+method: GET
+headers:
+  Authorization: Bearer {{userToken}}
+order: 2000

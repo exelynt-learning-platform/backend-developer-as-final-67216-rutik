@@ -1,0 +1,11 @@
+$kind: http-request
+url: "{{baseUrl}}/api/reservations?status=PENDING&minPrice=10&maxPrice=100&sort=price,desc"
+method: GET
+headers:
+  Authorization: Bearer {{adminToken}}
+queryParams:
+  status: PENDING
+  minPrice: "10"
+  maxPrice: "100"
+  sort: price,desc
+order: 4000

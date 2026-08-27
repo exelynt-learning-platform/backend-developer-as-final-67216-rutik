@@ -1,0 +1,23 @@
+$kind: http-request
+url: "{{baseUrl}}/api/reservations"
+method: POST
+headers:
+  Authorization: Bearer {{userToken}}
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "resourceId": 1,
+      "startTime": "2027-01-15T09:00:00",
+      "endTime": "2027-01-15T11:00:00",
+      "price": 45.00,
+      "notes": "Team planning session"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      const body = pm.response.json();
+      if (body.id) pm.collectionVariables.set('createdReservationId', body.id);
+    language: text/javascript
+order: 1000

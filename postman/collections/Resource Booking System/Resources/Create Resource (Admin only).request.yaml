@@ -1,0 +1,23 @@
+$kind: http-request
+url: "{{baseUrl}}/api/resources"
+method: POST
+headers:
+  Authorization: Bearer {{adminToken}}
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "name": "Conference Room C",
+      "description": "Small huddle room",
+      "type": "ROOM",
+      "location": "Building 2, Floor 1",
+      "available": true
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      const body = pm.response.json();
+      if (body.id) pm.collectionVariables.set('createdResourceId', body.id);
+    language: text/javascript
+order: 3000

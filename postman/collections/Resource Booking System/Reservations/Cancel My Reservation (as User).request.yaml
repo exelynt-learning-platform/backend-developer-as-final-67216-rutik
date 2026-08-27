@@ -1,0 +1,13 @@
+$kind: http-request
+url: "{{baseUrl}}/api/reservations/{{createdReservationId}}"
+method: PUT
+headers:
+  Authorization: Bearer {{userToken}}
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "status": "CANCELLED"
+    }
+order: 6000

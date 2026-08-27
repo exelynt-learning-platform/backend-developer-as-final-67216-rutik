@@ -1,0 +1,52 @@
+version: "3.8"
+
+# Quick local database for running the app OUTSIDE Docker (via `mvn spring-boot:run`).
+# For running the whole app inside Docker too, see docker-compose.full.yml.
+#
+# Usage:
+#   docker compose up -d          # starts PostgreSQL on localhost:5432
+#   docker compose --profile mysql up -d mysql   # starts MySQL instead, on localhost:3306
+#These credentials only for development and review purpose directly are given here like username and password
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: booking-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: booking_system
+      POSTGRES_USER: booking_user
+      POSTGRES_PASSWORD: booking_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U booking_user -d booking_system"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  mysql:
+    image: mysql:8.0
+    container_name: booking-mysql
+    profiles: ["mysql"]
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: booking_system
+      MYSQL_USER: booking_user
+      MYSQL_PASSWORD: booking_pass
+      MYSQL_ROOT_PASSWORD: root_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot_pass"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres-data:
+  mysql-data:

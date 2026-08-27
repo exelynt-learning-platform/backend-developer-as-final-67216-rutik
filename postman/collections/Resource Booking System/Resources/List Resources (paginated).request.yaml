@@ -1,0 +1,10 @@
+$kind: http-request
+url: "{{baseUrl}}/api/resources?page=0&size=10&sort=id,asc"
+method: GET
+headers:
+  Authorization: Bearer {{userToken}}
+queryParams:
+  page: "0"
+  size: "10"
+  sort: id,asc
+order: 1000
